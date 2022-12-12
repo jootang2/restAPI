@@ -1,25 +1,14 @@
 package me.jootang2.inflearn2.events;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import me.jootang2.inflearn2.common.RestDocksConfiguration;
+import me.jootang2.inflearn2.common.BaseControllerTest;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
-import javax.print.attribute.standard.Media;
 import java.time.LocalDateTime;
 
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
@@ -32,25 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@RunWith(SpringRunner.class)
-@AutoConfigureRestDocs
-@Import(RestDocksConfiguration.class)
-@ActiveProfiles("test")
-public class EventControllerTests {
-
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper objectMapper;
+public class EventControllerTests extends BaseControllerTest {
 
     @Autowired
     EventRepository eventRepository;
-
-    @Autowired
-    ModelMapper modelMapper;
 
     @Test
     public void createEvent() throws Exception {
