@@ -2,6 +2,7 @@ package me.jootang2.inflearn2.events;
 
 import jakarta.persistence.*;
 import lombok.*;
+import me.jootang2.inflearn2.accounts.Account;
 
 import java.time.LocalDateTime;
 
@@ -30,6 +31,8 @@ public class Event {
     private boolean free;
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus = EventStatus.DRAFT;
+    @ManyToOne
+    private Account manager;
 
     public void update() {
         //Update free
